@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript  Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">     
+        <header>
+            <a href="#">View Highscores</a> 
+            <h4 class="timer">Timer: 0</h4>
+        </header>
+        <div class="card">
+            <div id="quiz-start" class="quiz-start">
+                <h1>CODE QUIZ CHALLENGE</h1>
+                <h4>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalized your score time by 10 seconds!</h4>
+                <button id="start-btn">Start Quiz!</button>
+            </div>
+            <div id="question-container" class="hide">
+                <div id="question"><h3>Question</h3></div>
+                <div id="answer-buttons" class="button-grid">
+                    <button class="btn">Answer 1</button><br>
+                    <button class="btn">Answer 2</button><br>
+                    <button class="btn">Answer 3</button><br>
+                    <button class="btn">Answer 4</button><br>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+    <script src="script.js"></script>
+</body>
+</html>
