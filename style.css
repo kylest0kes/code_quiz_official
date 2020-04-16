@@ -32,23 +32,33 @@ header{
 
 a{
     color: purple;
-    font-size: x-large;
+    font-size: 18px;
 }
 
 button{
     background-color: purple;
     color: white;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 15px;
     padding: 5px 10px;
     border-radius: 12px;
     font-family: monospace;
     margin-top: 5px;
     margin-bottom: 5px;
+    width: 30%;
+    display: block;
 }
 
-.button-grid{
-    display: block;
+#start-btn{
+    position: absolute;
+    width: 10%;
+    left: 45%;
+}
+
+
+
+#question{
+    padding-bottom: 20px;
 }
 
 form{

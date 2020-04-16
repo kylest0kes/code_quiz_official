@@ -3,7 +3,10 @@ var startButton = document.getElementById("start-btn");
 var quizStart = document.getElementById("quiz-start")
 var questionContainer = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
-var answerEl = document.getElementById("answers");
+var answerEl = document.getElementById("answer-buttons");
+
+var shuffledQuestions;
+var questionIndex;
 
 var secondsLeft = 75;
 
@@ -11,52 +14,47 @@ var questions = [
     {
         question: "Commonly used data types DO NOT include:",
         answers: [
-            "Srings",
-            "Booleans",
-            "Alerts",
-            "Numbers",
+            { text: "Strings", correct: false },
+            { text: "Booleans", correct: false },
+            { text: "Alerts", correct: true },
+            { text: "Numbers", correct: false},
         ],
-        correctAnswer: "Alerts"
     },
     {
         question: "The condition in an if / else statement is enclosed within ________.",
         answers: [
-            "Quotes",
-            "Square Brackets",
-            "Curly Brackets",
-            "Parentheses",
+            { text: "Quotes", correct: false },
+            { text: "Square Brackets", correct: false },
+            { text: "Curly Brackets", correct: false },
+            { text: "Parentheses", correct: true },
         ],
-        correctAnswer: "Parentheses"
     },
     {
         question: "Arrays in JavaScript can be used to store ________.",
         answers: [
-            "Booleans",
-            "Numbers and Strings",
-            "Other Arrays",
-            "All of the Above",
+            { text: "Booleans", correct: false },
+            { text: "Numbers and Strings", correct: false },
+            { text: "Other Arrays", correct: false },
+            { text: "All of the Above", correct: true },
         ],
-        correctAnswer: "All of the Above"
     },
     {
         question: "String Values must be included in ________ when being assigned to Variables.",
         answers: [
-            "Commas",
-            "Quotes",
-            "Curly Brackets",
-            "Parentheses",
+            { text: "Commas", correct: false },
+            { text: "Quotes", correct: true },
+            { text: "Curly Brackets", correct: false },
+            { text: "Parentheses", correct: false },
         ],
-        correctAnswer: "Quotes"
     },
     {
         question: "A very useful tool, used during development and debugging, for printing content to the debugger is:",
         answers: [
-            "For Loops",
-            "Console Log",
-            "Terminal/Bash",
-            "JavaScript",
+            { text: "For Loops", correct: false },
+            { text: "Console Log", correct: true },
+            { text: "Terminal/Bash", correct: false },
+            { text: "JavaScript", correct: false },
         ],
-        correctAnswer: "Console Log"
     },
 ];
 
@@ -69,24 +67,41 @@ function startQuiz(){
     startTimer();
     quizStart.classList.add('hide');
     questionContainer.classList.remove('hide');
+    questionIndex = 0;
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
     nextQuestion();
     
 }
 
 //function to set the next question
 function nextQuestion (){
+    resetState()
+    showNextQuestion(shuffledQuestions[questionIndex])
     
 }
 
 //function to show next question
-function showNextQuestion(){
-    
+function showNextQuestion(question){
+    questionEl.innerText = question.question
+    question.answers.forEach(answer => {
+        var button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        button.addEventListener('click', selectAnswer)
+        answerEl.appendChild(button)
+    })
 }
 
 //function for selecting an answer
-function selectAnswer(){
+function selectAnswer(e){
 
 }
+
+//function for reset
+function resetState(){
+    
+}
+
 
 //function to start timer
 function startTimer(){
@@ -104,4 +119,4 @@ function startTimer(){
     }, 1000)
 }
 
-//questions
+
