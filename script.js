@@ -7,14 +7,16 @@ var answerEl = document.getElementById("answers");
 
 
 
-startButton.addEventListener('click', startQuiz)
+startButton.addEventListener('click', startQuiz);
 
-var secondsLeft = 75;
+var secondsLeft = 76;
 
 //function to start quiz
 function startQuiz(){
-    quizStart.classList.add('hide')
-    questionContainer.classList.remove('hide')
+    startTimer();
+    quizStart.classList.add('hide');
+    questionContainer.classList.remove('hide');
+    
     
 }
 
@@ -35,9 +37,18 @@ function selectAnswer(){
 
 //function to start timer
 function startTimer(){
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent ="Timer: " + secondsLeft;
 
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            questionContainer.classList.add('hide');
+            quizStart.classList.remove('hide');
+            alert("You ran out of time! Review your notes and try again!")
+          }
+
+    }, 1000)
 }
 
 //questions
-
-   
