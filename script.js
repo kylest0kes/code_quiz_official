@@ -1,14 +1,19 @@
+//why does timer have small delay on page startup?
+
 var timeEl = document.getElementById("timer");
 var startButton = document.getElementById("start-btn");
+var nextButton = document.getElementById("next-btn");
 var quizStart = document.getElementById("quiz-start")
 var questionContainer = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answer-buttons");
+var correctChoice = document.getElementById("correct-choice");
+var wrongChoice = document.getElementById("wrong-choice");
+var finalPage = document.getElementById("final-page");
+var userScore = document.getElementById("user-score");
 
 var shuffledQuestions;
 var questionIndex;
-
-var secondsLeft = 75;
 
 var questions = [
     {
@@ -17,7 +22,7 @@ var questions = [
             { text: "Strings", correct: false },
             { text: "Booleans", correct: false },
             { text: "Alerts", correct: true },
-            { text: "Numbers", correct: false},
+            { text: "Numbers", correct: false },
         ],
     },
     {
@@ -59,6 +64,11 @@ var questions = [
 ];
 
 startButton.addEventListener('click', startQuiz);
+nextButton.addEventListener('click', () => {
+    questionIndex++
+    nextQuestion()
+    nextButton.classList.add('hide');
+})
 
 //why does timer have small delay on page startup?
 
@@ -87,6 +97,9 @@ function showNextQuestion(question){
         var button = document.createElement('button')
         button.innerText = answer.text
         button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
         button.addEventListener('click', selectAnswer)
         answerEl.appendChild(button)
     })
@@ -94,10 +107,24 @@ function showNextQuestion(question){
 
 //function for selecting an answer
 function selectAnswer(e){
+    var selectedAnswerButton = e.target;
+    var correctAnswer = selectedAnswerButton.dataset.correct;
+    showResult ();
+    if (shuffledQuestions.length > questionIndex + 1) {
+        nextButton.classList.remove('hide');
+    } else {
+        questionContainer.classList.add('hide');
+        finalPage.classList.remove('hide');
+    }
+        
+}
+
+//function to show correct or wrong
+function showResult() {
 
 }
 
-//function for reset
+//function for resetting
 function resetState(){
     while (answerEl.firstChild) {
         answerEl.removeChild(answerEl.firstChild)
@@ -107,17 +134,19 @@ function resetState(){
 
 //function to start timer
 function startTimer(){
-    setInterval(function() {
+    var secondsLeft = 75;
+    
+    var timeInterval = setInterval(function() {
         timeEl.textContent ="Timer: " + secondsLeft;
         secondsLeft--;
 
         if(secondsLeft === 0) {
-            clearInterval(timerInterval);
+            clearInterval(timeInterval);
             questionContainer.classList.add('hide');
             quizStart.classList.remove('hide');
+            timeEl.textContent ="Timer: 0"
             alert("You ran out of time! Review your notes and try again!")
           }
-
     }, 1000)
 }
 

@@ -35,6 +35,10 @@ a{
     font-size: 18px;
 }
 
+a:hover{
+    color: black;
+}
+
 button{
     background-color: purple;
     color: white;
@@ -49,16 +53,40 @@ button{
     display: block;
 }
 
+button:hover{
+    background-color: black;
+}
+
+
 #start-btn{
     position: absolute;
     width: 10%;
     left: 45%;
 }
 
+.submit-btn{
+    position: absolute;
+    width: 10%;
+    left: 40%;
+    margin-top: 15px;
+}
 
+#next-btn{
+    width: 25%;
+    background-color: antiquewhite;
+    color: black;
+}
 
 #question{
     padding-bottom: 20px;
+}
+
+.correct{
+    color: green;
+}
+
+.wrong{
+    color: red;
 }
 
 form{
