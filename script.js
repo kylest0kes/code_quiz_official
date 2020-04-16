@@ -11,6 +11,8 @@ var correctChoice = document.getElementById("correct-choice");
 var wrongChoice = document.getElementById("wrong-choice");
 var finalPage = document.getElementById("final-page");
 var userScore = document.getElementById("user-score");
+var secondsLeft = 75;
+var timeInterval ;
 
 var shuffledQuestions;
 var questionIndex;
@@ -112,16 +114,19 @@ function selectAnswer(e){
     showResult ();
     if (shuffledQuestions.length > questionIndex + 1) {
         nextButton.classList.remove('hide');
-    } else {
+    } 
+    else {
         questionContainer.classList.add('hide');
         finalPage.classList.remove('hide');
+        clearInterval(timeInterval);
+        userScore.textContent = secondsLeft + "!"
     }
         
 }
 
 //function to show correct or wrong
 function showResult() {
-
+    
 }
 
 //function for resetting
@@ -134,12 +139,9 @@ function resetState(){
 
 //function to start timer
 function startTimer(){
-    var secondsLeft = 75;
-    
     var timeInterval = setInterval(function() {
         timeEl.textContent ="Timer: " + secondsLeft;
         secondsLeft--;
-
         if(secondsLeft === 0) {
             clearInterval(timeInterval);
             questionContainer.classList.add('hide');

@@ -90,19 +90,29 @@ button:hover{
 }
 
 form{
-    padding-top: 50px;
+    padding-top: 20px;
 }
 
 label{
-   font-size: larger;
+   font-size: large;
 }
 
 input{
-    height: 30px;
+    height: 20px;
+}
+
+h1{
+    text-align: center;
 }
 
 #initials{
-    font-size: large;
+    font-size: medium;
+}
+
+#user-score{
+    text-align: center;
+    font-size: xx-large;
+    font-style: italic;
 }
 
 .hide{
