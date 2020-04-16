@@ -1,15 +1,15 @@
-var timeEl = document.querySelector(".timer");
+var timeEl = document.getElementById("timer");
 var startButton = document.getElementById("start-btn");
 var quizStart = document.getElementById("quiz-start")
 var questionContainer = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answers");
 
-
+var secondsLeft = 75;
 
 startButton.addEventListener('click', startQuiz);
 
-var secondsLeft = 76;
+//why does timer have small delay on page startup?
 
 //function to start quiz
 function startQuiz(){
@@ -37,9 +37,9 @@ function selectAnswer(){
 
 //function to start timer
 function startTimer(){
-    var timerInterval = setInterval(function() {
-        secondsLeft--;
+    setInterval(function() {
         timeEl.textContent ="Timer: " + secondsLeft;
+        secondsLeft--;
 
         if(secondsLeft === 0) {
             clearInterval(timerInterval);

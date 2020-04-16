@@ -22,7 +22,7 @@ header{
     margin-bottom: 80px;
 }
 
-.timer{
+#timer{
     color: purple;
     position: fixed;
     top: 0;
@@ -51,6 +51,23 @@ button{
     display: block;
 }
 
+form{
+    padding-top: 50px;
+}
+
+label{
+   font-size: larger;
+}
+
+input{
+    height: 30px;
+}
+
+#initials{
+    font-size: large;
+}
+
 .hide{
     display: none;
 }
+

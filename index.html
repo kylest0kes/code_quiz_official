@@ -10,7 +10,7 @@
     <div class="wrapper">     
         <header>
             <a href="#">View Highscores</a> 
-            <h2 class="timer">Timer: 0</h2>
+            <h2 id="timer">Timer: 0</h2>
         </header>
         <div class="card">
             <div id="quiz-start" class="quiz-start">
@@ -29,6 +29,12 @@
             </div>
             <div id="final-page" class="hide">
                 <h1>Code Quiz Completed!</h1>
+                <div id="user-score"></div>
+                <form class="form-inline">
+                    <label>Enter Your Initials:</label>
+                    <input id="initials">
+                    <button type="submit">Submit</button>
+                  </form>   
             </div>
         </div>
     </div>  
