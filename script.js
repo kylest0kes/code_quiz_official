@@ -99,7 +99,9 @@ function selectAnswer(e){
 
 //function for reset
 function resetState(){
-    
+    while (answerEl.firstChild) {
+        answerEl.removeChild(answerEl.firstChild)
+    }
 }
 
 
