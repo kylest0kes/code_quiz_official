@@ -1,5 +1,3 @@
-//why does timer have small delay on page startup?
-
 var timeEl = document.getElementById("timer");
 var startButton = document.getElementById("start-btn");
 var nextButton = document.getElementById("next-btn");
@@ -11,6 +9,11 @@ var correctChoice = document.getElementById("correct-choice");
 var wrongChoice = document.getElementById("wrong-choice");
 var finalPage = document.getElementById("final-page");
 var userScore = document.getElementById("user-score");
+var answer1 = document.getElementById("ans1");
+var answer2 = document.getElementById("ans2");
+var answer3 = document.getElementById("ans3");
+var answer4 = document.getElementById("ans4");
+var submitButton = document.getElementById("submit-btn");
 var secondsLeft = 75;
 var timeInterval ;
 
@@ -71,11 +74,15 @@ nextButton.addEventListener('click', () => {
     nextQuestion()
     nextButton.classList.add('hide');
 })
+answer1.addEventListener('click', showResult);
+answer2.addEventListener('click', showResult);
+answer3.addEventListener('click', showResult);
+answer4.addEventListener('click', showResult);
 
-//why does timer have small delay on page startup?
 
 //function to start quiz
 function startQuiz(){
+    timeEl.textContent ="Timer: " + secondsLeft;
     startTimer();
     quizStart.classList.add('hide');
     questionContainer.classList.remove('hide');
@@ -101,6 +108,7 @@ function showNextQuestion(question){
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
+            
         }
         button.addEventListener('click', selectAnswer)
         answerEl.appendChild(button)
@@ -126,7 +134,14 @@ function selectAnswer(e){
 
 //function to show correct or wrong
 function showResult() {
-    
+    /*if (correctAnswer === true) {
+        correctChoice.remove('hide')
+        secondsLeft + 10
+    }
+    else{
+        wrongChoice.remove('hide') 
+        secondsLeft - 10
+    }*/
 }
 
 //function for resetting
@@ -139,9 +154,9 @@ function resetState(){
 
 //function to start timer
 function startTimer(){
-    var timeInterval = setInterval(function() {
-        timeEl.textContent ="Timer: " + secondsLeft;
+    timeInterval = setInterval(function() {
         secondsLeft--;
+        timeEl.textContent ="Timer: " + secondsLeft;
         if(secondsLeft === 0) {
             clearInterval(timeInterval);
             questionContainer.classList.add('hide');
