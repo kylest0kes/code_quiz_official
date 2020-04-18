@@ -14,11 +14,18 @@ var answer2 = document.getElementById("ans2");
 var answer3 = document.getElementById("ans3");
 var answer4 = document.getElementById("ans4");
 var submitButton = document.getElementById("submit-btn");
+var userInitials = document.getElementById("initials")
 var secondsLeft = 75;
 var timeInterval ;
+var scores = [];
+    if(localStorage.getItem("scores")) {
+        scores = JSON.parse(localStorage.getItem("scores"))
+        
+    }
 
 var shuffledQuestions;
 var questionIndex;
+
 
 var questions = [
     {
@@ -74,10 +81,11 @@ nextButton.addEventListener('click', () => {
     nextQuestion()
     nextButton.classList.add('hide');
 })
-answer1.addEventListener('click', showResult);
-answer2.addEventListener('click', showResult);
-answer3.addEventListener('click', showResult);
-answer4.addEventListener('click', showResult);
+answer1.addEventListener('click', selectAnswer); //or selected answer?
+answer2.addEventListener('click', selectAnswer);
+answer3.addEventListener('click', selectAnswer);
+answer4.addEventListener('click', selectAnswer);
+submitButton.addEventListener('click', storeScore)
 
 
 //function to start quiz
@@ -119,7 +127,8 @@ function showNextQuestion(question){
 function selectAnswer(e){
     var selectedAnswerButton = e.target;
     var correctAnswer = selectedAnswerButton.dataset.correct;
-    showResult ();
+    console.log(correctAnswer)
+    showResult (correctAnswer);
     if (shuffledQuestions.length > questionIndex + 1) {
         nextButton.classList.remove('hide');
     } 
@@ -132,26 +141,43 @@ function selectAnswer(e){
         
 }
 
+//NOT WORKING PROPERLY, TA COULDNT HELP FIRGURE OUT
 //function to show correct or wrong
-function showResult() {
-    /*if (correctAnswer === true) {
-        correctChoice.remove('hide')
-        secondsLeft + 10
+function showResult(correctAnswer) {
+    if (correctAnswer) {
+        correctChoice.classList.remove('hide')
+        secondsLeft += 10
+        timeEl.textContent ="Timer: " + secondsLeft;
     }
     else{
-        wrongChoice.remove('hide') 
-        secondsLeft - 10
-    }*/
+        wrongChoice.classList.remove('hide') 
+        secondsLeft -= 10
+        timeEl.textContent ="Timer: " + secondsLeft;
+    }
 }
 
 //function for resetting
 function resetState(){
     while (answerEl.firstChild) {
         answerEl.removeChild(answerEl.firstChild)
+        
     }
+    wrongChoice.classList.add('hide')
+    correctChoice.classList.add('hide')
 }
 
-
+//function to submit score and initials 
+function storeScore(event) {
+    scores.push({
+        initials: userInitials.value,
+        score: secondsLeft
+    })
+    event.preventDefault();
+    localStorage.setItem("scores", JSON.stringify(scores))
+    clearInterval(timeInterval);
+    window.location = "highscore.html"
+}
+// FIND OUT HOW TO RESET THE TIMER AFTER SUBMITTING SCORE AND AFTER IT RUNS OUT
 //function to start timer
 function startTimer(){
     timeInterval = setInterval(function() {
