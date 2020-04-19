@@ -1,6 +1,22 @@
 var scores = JSON.parse(localStorage.getItem("scores"));
-    initials = userInitials.value,
-    score = userScore.value
+   //how to sort
+   function sortingScores() {
+        scores.sort(function(){
+            for(var i = 0; i < scores.length; i++) {
+                scores.appendChild()
+            }
+        });
+    }
+
+sortingScores()
+
+//loop through array and put on page
 
 
-scores.appendChild()
+//clear scores
+$("clear-btn").click(function(){
+    $("highscores").empty();
+});
+   
+
+
