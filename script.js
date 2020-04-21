@@ -141,7 +141,7 @@ function selectAnswer(e){
         
 }
 
-//NOT WORKING PROPERLY, TA COULDNT HELP FIRGURE OUT
+
 //function to show correct or wrong
 function showResult(correctAnswer) {
     if (correctAnswer) {
